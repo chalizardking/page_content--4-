@@ -12,7 +12,6 @@ import {
   Plus,
   MessageSquare,
   Video,
-  ChevronDown,
   StopCircle,
   Loader2,
   Film,
@@ -31,11 +30,12 @@ export function VideoGenerator({ onVideoGenerated }: VideoGeneratorProps) {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   const generateMutation = trpc.video.generate.useMutation();
-  const { data: videoStatus, isLoading: isPolling } = trpc.video.getStatus.useQuery(
+  const { data: videoStatus } = trpc.video.getStatus.useQuery(
     { videoId: activeVideoId! },
     {
       enabled: !!activeVideoId,
-      refetchInterval: (data) => {
+      refetchInterval: (query) => {
+        const data = query.state.data;
         if (!data) return 2000;
         if (data.status === "COMPLETED" || data.status === "FAILED") {
           return false;

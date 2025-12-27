@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { router, publicProcedure, protectedProcedure } from "../trpc";
+import { router, publicProcedure } from "../trpc";
 import db from "@/lib/db";
 import { generateId, parseJSON } from "@/lib/utils";
 

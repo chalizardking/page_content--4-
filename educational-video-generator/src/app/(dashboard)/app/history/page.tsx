@@ -4,6 +4,7 @@ import { trpc } from "@/lib/trpc";
 import { Card } from "@/components/ui/card";
 import { formatDate, formatDuration } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 import { Film, Clock, Trash2, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -72,10 +73,11 @@ export default function HistoryPage() {
                 {/* Thumbnail */}
                 <div className="relative aspect-video bg-[var(--muted)]/50 flex items-center justify-center">
                   {video.thumbnailUrl ? (
-                    <img
+                    <Image
                       src={video.thumbnailUrl}
                       alt={video.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   ) : (
                     <Film className="size-10 text-[var(--muted-foreground)]" />

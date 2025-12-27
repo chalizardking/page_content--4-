@@ -41,7 +41,7 @@ export default function RootLayout({
       className={`dark ${instrumentSans.variable} ${indieFlower.variable}`}
       style={{ colorScheme: "dark" }}
     >
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <TRPCProvider>{children}</TRPCProvider>
       </body>
     </html>
